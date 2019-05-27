@@ -36,11 +36,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var poleName = "N";
         if (poleRotation < 45 || poleRotation > 315) {
             poleName = "N"
-        } else if (45 < poleRotation || polerotation < 135) {
+        } else if (45 < poleRotation || poleRotation < 135) {
             poleName = "W"
-        } else if (135 < poleRotation || polerotation < 225) {
+        } else if (135 < poleRotation || poleRotation < 225) {
             poleName = "S"
-        } else if (225 < poleRotation || polerotation < 315) {
+        } else if (225 < poleRotation || poleRotation < 315) {
             poleName = "E"
         }
 

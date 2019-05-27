@@ -8,9 +8,9 @@ body {
 	position: absolute;
 	height: 1px;
 	width: 100%;
-	top: 00%;
+	top: 0%;
 	background-color: red;
-	transform: rotate(7deg);
+	transform: rotate(0deg);
 }
 
 #data {
