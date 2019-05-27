@@ -1,0 +1,30 @@
+body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#horizon {
+	position: absolute;
+	height: 1px;
+	width: 100%;
+	top: 00%;
+	background-color: red;
+	transform: rotate(7deg);
+}
+
+#data {
+	position: absolute;
+	color: black;
+	bottom: 0%;
+	padding: 10px;
+}
+
+#pole {
+	position: absolute;
+	color: blue;
+	font-weight: bold;
+	font-size: 40px;
+	right: 50%;
+	padding: 10px;
+}

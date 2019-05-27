@@ -2,16 +2,18 @@
 <head>
     <title>Navigator</title>
     <script src="navigator.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="compass">
-        <div class="arrow">/\</div>
-    </div>
 
-    <div class="orientation-data">
-        <div>Gamma <span id="tiltFB"></span></div>
-        <div>Delta <span id="tiltLR"></span></div>
+    <div id="horizon"></div>
+
+    <div id="data">
+        <div>Gamma <span id="gamma"></span></div>
+        <div>Beta <span id="beta"></span></div>
         <div>Direction <span id="direction"></span></div>
     </div>
+
+    <div id="pole">S</div>
 </body>
 </html>
