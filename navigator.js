@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var pole = document.getElementById("pole");
 
         var poleRotation = (dir + 360) % 360;
-        var polePosition = ((poleRotation + 45) % 90) * (90.0 / 100.0);
+        var polePosition = ((poleRotation + 45) % 90) * (1/(90.0 / 100.0));
 
         var poleName = "N";
         if (poleRotation < 45 || poleRotation > 315) {
