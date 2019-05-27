@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }, false);
     };
 
-    function  deviceOrientationHandler(gamma, beta, dir) {
+     deviceOrientationHandler = function(gamma, beta, dir) {
         var horizonRotation = 0;
         var horizonPosition = Math.abs((Math.abs(gamma) / 1.8) - 100);
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         var pole = document.getElementById("pole");
 
-        var poleRotation = (direction + 360) % 360;
+        var poleRotation = (dir + 360) % 360;
         var polePosition = ((poleRotation + 45) % 90) * (90.0 / 100.0);
 
         var poleName = "N";
