@@ -44,21 +44,21 @@ function openCamera() {
 
 function deviceOrientationHandler(gamma, beta, dir) {
 
-    var isInLandscape = Math.abs(gamma) > Math.abs(beta);
+    var isInLandscape = false; Math.abs(gamma) > Math.abs(beta);
 
     var horizonRotation = -beta + 90;
 
 
     var horizon = document.getElementById("horizon");
-    //horizon.style.webkitTransform = "rotate(" + horizonRotation + "deg)";
-    // horizon.style.MozTransform = "rotate(" + horizonRotation + "deg)";
-    // horizon.style.transform = "rotate(" + horizonRotation + "deg)";
+    horizon.style.webkitTransform = "rotate(" + horizonRotation + "deg)";
+    horizon.style.MozTransform = "rotate(" + horizonRotation + "deg)";
+    horizon.style.transform = "rotate(" + horizonRotation + "deg)";
 
 
     if (isInLandscape) {
         var normalizedGamma = gamma;
         if (gamma < 0) {
-            normalizedGamma = Number(gamma)+180 ;
+            normalizedGamma = Number(gamma) + 180;
         }
 
         if (normalizedGamma < 90 - vFoV || normalizedGamma > 90 + vFoV) {
@@ -73,7 +73,7 @@ function deviceOrientationHandler(gamma, beta, dir) {
         if (Math.abs(beta) < 90 - vFoV || Math.abs(beta) > 90 + vFoV) {
             horizon.style.visibility = "hidden";
         } else {
-            var horizonPosition = (Math.abs(beta)-90+vFoV)*(99/(2*vFoV));
+            var horizonPosition = (Math.abs(beta) - 90 + vFoV) * (99 / (2 * vFoV));
             horizon.style.top = horizonPosition + "%";
             horizon.style.left = "0%";
             horizon.style.visibility = "visible";

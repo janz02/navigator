@@ -60,7 +60,7 @@ video {
 		visibility: hidden;
 	}
 }
-
+/*
 @media screen and (max-width: 760px) and (orientation:landscape) {
 
 	#pole {
@@ -82,3 +82,4 @@ video {
 		height: 100%;
 	}
 }
+*/
