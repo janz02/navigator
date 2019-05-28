@@ -66,7 +66,6 @@ function deviceOrientationHandler(gamma, beta, dir) {
     } else {
         var horizonPosition = (normalizedGamma - 90 + vFoV) * (99 / (2 * vFoV));
         horizon.style.left = horizonPosition + "%";
-        horizon.style.top = "0%";
         horizon.style.visibility = "visible";
     }
     /*} else {
