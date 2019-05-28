@@ -54,7 +54,7 @@ video {
     object-fit: cover;
 }
 
-/* Smartphones ----------- */
+/* Smartphones ----------- 
 @media only screen and (max-width: 760px) {
 	.manual {
 		visibility: hidden;
