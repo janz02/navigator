@@ -46,7 +46,7 @@ function deviceOrientationHandler(gamma, beta, dir) {
 
     //var isInLandscape = false; Math.abs(gamma) > Math.abs(beta);
 
-    var horizonRotation = beta;
+    var horizonRotation = -beta;
 
 
     var horizon = document.getElementById("horizon");
