@@ -1,8 +1,8 @@
 var hFoV = 90;
 var vFoV = 40;
-   
 
-manual = function () {
+
+function manual() {
     deviceOrientationHandler(
         document.getElementById("gammaManual").value,
         document.getElementById("betaManual").value,
@@ -40,19 +40,48 @@ function openCamera() {
         });
     }
 
-    }
+}
 
-deviceOrientationHandler = function (gamma, beta, dir) {
+function deviceOrientationHandler(gamma, beta, dir) {
+
+    var isInLandscape = Math.abs(gamma) > Math.abs(beta);
+
     var horizonRotation = -beta + 90;
-    var horizonPosition = Math.abs((Math.abs(gamma) / 1.8) - 100);
+
 
     var horizon = document.getElementById("horizon");
-    horizon.style.webkitTransform = "rotate(" + horizonRotation + "deg)";
-    horizon.style.MozTransform = "rotate(" + horizonRotation + "deg)";
-    horizon.style.transform = "rotate(" + horizonRotation + "deg)";
+    //horizon.style.webkitTransform = "rotate(" + horizonRotation + "deg)";
+    // horizon.style.MozTransform = "rotate(" + horizonRotation + "deg)";
+    // horizon.style.transform = "rotate(" + horizonRotation + "deg)";
 
-    horizon.style.top = horizonPosition + "%";
 
+    if (isInLandscape) {
+        var normalizedGamma = gamma;
+        if (gamma < 0) {
+            normalizedGamma = Number(gamma)+180 ;
+        }
+
+        if (normalizedGamma < 90 - vFoV || normalizedGamma > 90 + vFoV) {
+            horizon.style.visibility = "hidden";
+        } else {
+            var horizonPosition = (normalizedGamma - 90 + vFoV) * (99 / (2 * vFoV));
+            horizon.style.left = horizonPosition + "%";
+            horizon.style.top = "0%";
+            horizon.style.visibility = "visible";
+        }
+    } else {
+        if (Math.abs(beta) < 90 - vFoV || Math.abs(beta) > 90 + vFoV) {
+            horizon.style.visibility = "hidden";
+        } else {
+            var horizonPosition = (Math.abs(beta)-90+vFoV)*(99/(2*vFoV));
+            horizon.style.top = horizonPosition + "%";
+            horizon.style.left = "0%";
+            horizon.style.visibility = "visible";
+        }
+
+    }
+
+    //POLE
 
     var pole = document.getElementById("pole");
 
@@ -71,12 +100,26 @@ deviceOrientationHandler = function (gamma, beta, dir) {
     }
 
     pole.innerHTML = poleName;
-    pole.style.left = polePosition + "%";
 
+    if (isInLandscape) {
+        pole.style.top = polePosition + "%";
+        pole.style.left = "100%";
+
+    } else {
+        pole.style.left = polePosition + "%";
+        pole.style.top = "0%";
+    }
+
+
+    //DEBUG
 
     document.getElementById("gamma").innerHTML = Math.ceil(gamma);
     document.getElementById("beta").innerHTML = Math.ceil(beta);
     document.getElementById("direction").innerHTML = Math.ceil(dir);
+
+    document.getElementById("gammaManual").value = Math.ceil(gamma);
+    document.getElementById("betaManual").value = Math.ceil(beta);
+    document.getElementById("dirManual").value = Math.ceil(dir);
 
 }
 
@@ -85,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     if (window.DeviceOrientationEvent) {
 
-        manual();
+        // manual();
 
         openCamera();
 
