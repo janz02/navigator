@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     };
 
     deviceOrientationHandler = function (gamma, beta, dir) {
-        var horizonRotation = (-beta/2)+90;
+        var horizonRotation = -beta+90;
         var horizonPosition = Math.abs((Math.abs(gamma) / 1.8) - 100);
 
         var horizon = document.getElementById("horizon");
