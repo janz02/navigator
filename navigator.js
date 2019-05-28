@@ -44,9 +44,9 @@ function openCamera() {
 
 function deviceOrientationHandler(gamma, beta, dir) {
 
-    var isInLandscape = false; Math.abs(gamma) > Math.abs(beta);
+    //var isInLandscape = false; Math.abs(gamma) > Math.abs(beta);
 
-    var horizonRotation = gamma;
+    var horizonRotation = beta;
 
 
     var horizon = document.getElementById("horizon");
@@ -55,21 +55,21 @@ function deviceOrientationHandler(gamma, beta, dir) {
     horizon.style.transform = "rotate(" + horizonRotation + "deg)";
 
 
-    if (isInLandscape) {
-        var normalizedGamma = gamma;
-        if (gamma < 0) {
-            normalizedGamma = Number(gamma) + 180;
-        }
+    //if (isInLandscape) {
+    var normalizedGamma = gamma;
+    if (gamma < 0) {
+        normalizedGamma = Number(gamma) + 180;
+    }
 
-        if (normalizedGamma < 90 - vFoV || normalizedGamma > 90 + vFoV) {
-            horizon.style.visibility = "hidden";
-        } else {
-            var horizonPosition = (normalizedGamma - 90 + vFoV) * (99 / (2 * vFoV));
-            horizon.style.left = horizonPosition + "%";
-            horizon.style.top = "0%";
-            horizon.style.visibility = "visible";
-        }
+    if (normalizedGamma < 90 - vFoV || normalizedGamma > 90 + vFoV) {
+        horizon.style.visibility = "hidden";
     } else {
+        var horizonPosition = (normalizedGamma - 90 + vFoV) * (99 / (2 * vFoV));
+        horizon.style.left = horizonPosition + "%";
+        horizon.style.top = "0%";
+        horizon.style.visibility = "visible";
+    }
+    /*} else {
         if (Math.abs(beta) < 90 - vFoV || Math.abs(beta) > 90 + vFoV) {
             horizon.style.visibility = "hidden";
         } else {
@@ -78,8 +78,8 @@ function deviceOrientationHandler(gamma, beta, dir) {
             horizon.style.left = "0%";
             horizon.style.visibility = "visible";
         }
-
-    }
+        
+    }*/
 
     //POLE
 
@@ -101,14 +101,14 @@ function deviceOrientationHandler(gamma, beta, dir) {
 
     pole.innerHTML = poleName;
 
-    if (isInLandscape) {
-        pole.style.top = polePosition + "%";
-        pole.style.left = "100%";
-
-    } else {
-        pole.style.left = polePosition + "%";
-        pole.style.top = "0%";
-    }
+    //if (isInLandscape) {
+    pole.style.top = polePosition + "%";
+    pole.style.left = "100%";
+    /*
+        } else {
+            pole.style.left = polePosition + "%";
+            pole.style.top = "0%";
+        }*/
 
 
     //DEBUG

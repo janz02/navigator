@@ -5,14 +5,14 @@ body {
 }
 
 #horizon {
-    position: absolute;
-	height: 3px;
-	width: 100%;
+	position: absolute;
+    width: 3px;
+    height: 100%;
 	top: 0;
 	background-color: red;
-    -ms-transform: rotate(0);
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
+	-ms-transform: rotate(0);
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
 }
 
 #data {
@@ -21,6 +21,9 @@ body {
 	bottom: 0;
 	padding: 10px;
 	background-color: white;
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 #pole {
@@ -28,58 +31,37 @@ body {
 	color: blue;
 	font-weight: bold;
 	font-size: 40px;
-	right: 50%;
 	padding: 10px;
 	text-shadow: 1px 1px white;
+    top: 50%;
+    right: 1%;
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 
-
-
 #video {
-    width: 100%;
+	width: 100%;
 	height: 100%;
 	position: absolute;
 	min-width: 100%;
 	min-height: 100%;
 	top: 50%;
 	left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
 video {
-    -webkit-object-fit: cover;
-    object-fit: cover;
+	-webkit-object-fit: cover;
+	object-fit: cover;
 }
 
-/* Smartphones ----------- 
+/*Smartphones ----------- */
 @media only screen and (max-width: 760px) {
 	.manual {
 		visibility: hidden;
 	}
 }
-/*
-@media screen and (max-width: 760px) and (orientation:landscape) {
-
-	#pole {
-        right: 0;
-		top: 50%;
-        -ms-transform: rotate(90deg);
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
-    }
-
-    #data {
-        -ms-transform: rotate(90deg);
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
-    }
-
-    #horizon {
-		width: 3px;
-		height: 100%;
-	}
-}
-*/
