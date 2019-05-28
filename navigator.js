@@ -1,23 +1,33 @@
+var hFoV = 90;
+var vFoV = 40;
+
 document.addEventListener("DOMContentLoaded", function (event) {
 
     if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', function (eventData) {
-            // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
-            var gamma = eventData.gamma;
 
-            // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
-            var beta = eventData.beta;
+        openCamera();
 
-            // alpha: The direction the compass of the device aims to in degrees.
-            var dir = eventData.alpha
+        getLocation();
 
-            // Call the function to use the data on the page.
-            deviceOrientationHandler(gamma, beta, dir);
-        }, false);
+        window.addEventListener('deviceorientation',
+            function (eventData) {
+                // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
+                var gamma = eventData.gamma;
+
+                // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
+                var beta = eventData.beta;
+
+                // alpha: The direction the compass of the device aims to in degrees.
+                var dir = eventData.alpha
+
+                // Call the function to use the data on the page.
+                deviceOrientationHandler(gamma, beta, dir);
+            },
+            false);
     };
 
-     deviceOrientationHandler = function(gamma, beta, dir) {
-        var horizonRotation = 0;
+    deviceOrientationHandler = function (gamma, beta, dir) {
+        var horizonRotation = beta;
         var horizonPosition = Math.abs((Math.abs(gamma) / 1.8) - 100);
 
         var horizon = document.getElementById("horizon");
@@ -30,17 +40,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         var pole = document.getElementById("pole");
 
-        var poleRotation = (dir + 360) % 360;
-        var polePosition = ((poleRotation + 45) % 90) * (1/(90.0 / 100.0));
+        var poleRotation = (Number(dir) + 360) % 360;
+        var polePosition = ((poleRotation + 45) % 90);
 
         var poleName = "N";
         if (poleRotation < 45 || poleRotation > 315) {
             poleName = "N"
-        } else if (45 < poleRotation || poleRotation < 135) {
+        } else if (45 < poleRotation && poleRotation < 135) {
             poleName = "W"
-        } else if (135 < poleRotation || poleRotation < 225) {
+        } else if (135 < poleRotation && poleRotation < 225) {
             poleName = "S"
-        } else if (225 < poleRotation || poleRotation < 315) {
+        } else if (225 < poleRotation && poleRotation < 315) {
             poleName = "E"
         }
 
@@ -54,4 +64,39 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     }
 
+
+
 });
+
+manual = function () {
+    deviceOrientationHandler(
+        document.getElementById("gammaManual").value,
+        document.getElementById("betaManual").value,
+        document.getElementById("dirManual").value);
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+}
+function showPosition(position) {
+    document.getElementById("lat").innerHTML = position.coords.latitude;
+    document.getElementById("lon").innerHTML = position.coords.longitude;
+    document.getElementById("alt").innerHTML = position.coords.altitude;
+}
+
+function openCamera() {
+    var video = document.getElementById('video');
+
+    // Get access to the camera!
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+            //video.src = window.URL.createObjectURL(stream);
+            video.srcObject = stream;
+            video.play();
+        });
+    }
+
+}
